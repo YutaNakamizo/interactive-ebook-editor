@@ -6,7 +6,7 @@ on:
 jobs:
   notify:
     name: Chat Notification
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
       - name: google-chat-notification
         uses: Co-qn/google-chat-notification@v1
