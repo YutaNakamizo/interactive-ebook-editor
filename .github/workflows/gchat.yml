@@ -11,6 +11,6 @@ jobs:
       - name: google-chat-notification
         uses: Co-qn/google-chat-notification@v1
         with:
-          name: Pull Request Opend
+          name: Pull Request Opened
           url: ${{ secrets.GCHAT_WEBHOOK_URL }}
           status: ${{ job.status }}
