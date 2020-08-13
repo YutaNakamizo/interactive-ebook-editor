@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { TextField } from "@material-ui/core";
+import { TextField, TextFieldProps } from "@material-ui/core";
 import {
   ToggleButtonGroup,
   ToggleButton,
@@ -33,7 +33,7 @@ export const HeaderMenuHome: FC<HeaderMenuProps> = (props) => {
           getOptionLabel={(font: Font) => font.label}
           style={{ width: "180px" }}
           value={{ name: "dummy-font", label: "Dummy Font" }} // TODO: Replace this dummy default value
-          renderInput={(params: any) => (
+          renderInput={(params: TextFieldProps) => (
             <TextField {...params} variant="outlined" size="small" />
           )}
         />
@@ -44,7 +44,7 @@ export const HeaderMenuHome: FC<HeaderMenuProps> = (props) => {
           getOptionLabel={(size: number) => `${size} pt`}
           style={{ width: "120px" }}
           value={12} // TODO: Replace this dummy default value
-          renderInput={(params: any) => (
+          renderInput={(params: unknown) => (
             <TextField {...params} variant="outlined" size="small" />
           )}
         />

@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
-import { HeaderMenuFile } from "./HeaderMenuFile";
-import { HeaderMenuHome } from "./HeaderMenuHome";
-import { HeaderMenuEdit } from "./HeaderMenuEdit";
-import { HeaderMenuView } from "./HeaderMenuView";
+import { HeaderMenuFile } from "@/components/HeaderMenuFile";
+import { HeaderMenuHome } from "@/components/HeaderMenuHome";
+import { HeaderMenuEdit } from "@/components/HeaderMenuEdit";
+import { HeaderMenuView } from "@/components/HeaderMenuView";
 
 interface Menu {
   label: string;

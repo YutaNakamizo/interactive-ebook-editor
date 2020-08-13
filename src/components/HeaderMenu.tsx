@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { Toolbar } from "@material-ui/core";
 
 export interface HeaderMenuProps {
@@ -8,14 +8,12 @@ export interface HeaderMenuProps {
   value: number;
 }
 
-const useStyle = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {},
-  })
-);
+const useStyle = makeStyles({
+  root: {},
+});
 
 export const HeaderMenu: FC<HeaderMenuProps> = (props) => {
-  const { children, index, value, ...others } = props;
+  const { children, index, value } = props;
 
   const classes = useStyle();
   return (
