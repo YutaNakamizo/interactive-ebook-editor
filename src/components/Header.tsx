@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { AppBar, Tabs, Tab } from "@material-ui/core";
 import { HeaderMenuFile } from "@/components/HeaderMenuFile";
@@ -24,7 +24,8 @@ const useStyle = makeStyles((theme: Theme) => ({
 }));
 
 export const Header: FC<unknown> = () => {
-  const [value, setValue] = React.useState(1);
+  const [value, setValue] = useState(1);
+  const classes = useStyle();
 
   const menus: Menu[] = [
     { label: "File" },
@@ -37,7 +38,6 @@ export const Header: FC<unknown> = () => {
     setValue(newValue);
   };
 
-  const classes = useStyle();
   return (
     <AppBar position="fixed" className={classes.root}>
       <Tabs
