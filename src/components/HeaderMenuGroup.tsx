@@ -13,7 +13,7 @@ const useStyle = makeStyles({
 
 export const HeaderMenuGroup: FC = (props: HeaderMenuGroupProps) => {
   const { children, ...others } = props;
-
   const classes = useStyle();
+
   return <div className={classes.root}>{children}</div>;
 };

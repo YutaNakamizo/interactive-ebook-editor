@@ -1,5 +1,13 @@
 import React from "react";
-import { render } from "react-dom";
-import { App } from "@/App";
+import { render as renderToDom } from "react-dom";
 
-render(<App />, document.getElementById("app"));
+const render = () => {
+  const { App } = require("@/App");
+  renderToDom(<App />, document.getElementById("app"));
+};
+
+render();
+
+if (process.env.NODE_ENV === "development" && module.hot) {
+  module.hot.accept("./app/App", render);
+}

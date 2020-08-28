@@ -14,8 +14,8 @@ const useStyle = makeStyles({
 
 export const HeaderMenu: FC<HeaderMenuProps> = (props) => {
   const { children, index, value } = props;
-
   const classes = useStyle();
+
   return (
     <div className={classes.root} hidden={value !== index}>
       <Toolbar disableGutters={true}>{children}</Toolbar>

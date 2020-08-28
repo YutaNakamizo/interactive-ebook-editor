@@ -1,6 +1,12 @@
-import React, { FC } from "react";
+import React, { FC, useMemo, useState } from "react";
+import { createEditor, Node as SlateNode } from "slate";
+import { Slate, Editable, withReact } from "slate-react";
 import { makeStyles, Theme } from "@material-ui/core/styles";
 import { Tabs, Toolbar, Paper } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { setSlateNodes } from "@/features/slate/slice";
+import { RootState } from "@/app/rootReducer";
+import { Editor } from "@/contexts/EditorContext";
 
 class PaperPreset {
   public width: number;
@@ -34,14 +40,17 @@ const useStyle = makeStyles((theme: Theme) => ({
 }));
 
 export const Main: FC<unknown> = () => {
+  const { slateNodes } = useSelector((state: RootState) => state.slate);
+  const dispatch = useDispatch();
+  const editor = useMemo(() => withReact(createEditor()), []);
   const classes = useStyle();
+
   return (
     <main className={classes.root}>
       <Tabs />
       <Toolbar />
-
-      <Paper square={true} className={classes.paper}>
-        Hello World
+      <Paper square className={classes.paper}>
+        <Editor />
       </Paper>
     </main>
   );

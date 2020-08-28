@@ -1,7 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, Component } from "react";
+import { Provider } from "react-redux";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import * as colors from "@material-ui/core/colors";
+import { store } from "./app/store";
+import { Provider as EditorProvider } from "@/contexts/EditorContext";
 import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
 import { Footer } from "@/components/Footer";
@@ -30,12 +33,28 @@ const theme = createMuiTheme({
   },
 });
 
+class ErrorBoundary extends Component {
+  componentDidCatch() {
+    return null;
+  }
+
+  render() {
+    return <>{this.props.children}</>;
+  }
+}
+
 export const App: FC<unknown> = () => {
   return (
-    <ThemeProvider theme={theme}>
-      <Header />
-      <Main />
-      <Footer count={"Hello World".length} message={"saving..."} />
-    </ThemeProvider>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <EditorProvider>
+            <Header />
+            <Main />
+            <Footer count={"Hello World".length} message={"saving..."} />
+          </EditorProvider>
+        </ThemeProvider>
+      </Provider>
+    </ErrorBoundary>
   );
 };
