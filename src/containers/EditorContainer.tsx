@@ -1,16 +1,19 @@
 import React, { FC } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/rootReducer";
-import { currentElementSelector } from "@/features/document/selectors";
+import { EditorTree } from "@/components/EditorTree";
+import { EditableDocBookXast } from "@/types/docbook";
+
+type Node = EditableDocBookXast["Node"];
 
 export const EditorContainer: FC<unknown> = () => {
-  const element = useSelector((x: RootState) =>
-    currentElementSelector(x.document)
-  );
+  const documentState = useSelector((x: RootState) => x.document);
 
-  const text = useSelector((x: RootState) =>
-    currentElementSelector(x.document)
+  return (
+    <>
+      {documentState.document.children.map((node, key) => (
+        <EditorTree node={node as Node} key={key} />
+      ))}
+    </>
   );
-
-  return null;
 };

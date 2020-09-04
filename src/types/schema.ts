@@ -22,51 +22,58 @@ export type SchemaEntry = Pick<Xast.Element, "type" | "name" | "attributes"> & {
 
 export type Schema<T extends SchemaEntry> = {
   Parent: Unist.Parent & {
-    children: Schema<T>["Node"][];
+    children: Node<T>[];
   };
 
   Literal: Unist.Literal & {
     value: string;
   };
 
-  Node:
-    | Element<T>
-    | Xast.Text
-    | Xast.Comment
-    | Xast.Doctype
-    | Xast.Instruction
-    | Xast.Cdata;
+  Node: Node<T>;
 
-  Root: Schema<T>["Parent"] & {
+  Root: Unist.Parent & {
     type: "root";
+    children: Node<T>[];
   };
 
   Element: Element<T>;
 
-  Text: Schema<T>["Literal"] & {
+  Text: Unist.Literal & {
     type: "text";
+    value: string;
   };
 
-  Comment: Schema<T>["Literal"] & {
+  Comment: Unist.Literal & {
     type: "comment";
+    value: string;
   };
 
-  DocType: Schema<T>["Node"] & {
+  DocType: Node<T> & {
     type: "doctype";
     name: string;
     public?: string;
     system?: string;
   };
 
-  Instruction: Schema<T>["Literal"] & {
+  Instruction: Unist.Literal & {
     type: "instruction";
     name: string;
+    value: string;
   };
 
-  Cdata: Schema<T>["Literal"] & {
+  Cdata: Unist.Literal & {
     type: "cdata";
+    value: string;
   };
 };
+
+type Node<T extends SchemaEntry> =
+  | Element<T>
+  | Xast.Text
+  | Xast.Comment
+  | Xast.Doctype
+  | Xast.Instruction
+  | Xast.Cdata;
 
 type Element<Set extends SchemaEntry> = _Element<Set>;
 

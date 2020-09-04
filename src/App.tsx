@@ -9,6 +9,7 @@ import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
 import { Footer } from "@/components/Footer";
 import "./App.css";
+import { EditorContainer } from "./containers/EditorContainer";
 
 const theme = createMuiTheme({
   palette: {
@@ -50,7 +51,7 @@ export const App: FC<unknown> = () => {
         <ThemeProvider theme={theme}>
           <EditorProvider>
             <Header />
-            <Main />
+            <EditorContainer />
             <Footer count={"Hello World".length} message={"saving..."} />
           </EditorProvider>
         </ThemeProvider>

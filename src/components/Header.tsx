@@ -39,7 +39,7 @@ export const Header: FC<unknown> = () => {
   };
 
   return (
-    <AppBar position="fixed" className={classes.root}>
+    <AppBar position="sticky" className={classes.root}>
       <Tabs
         value={value}
         onChange={handleChange}

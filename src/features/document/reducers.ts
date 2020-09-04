@@ -1,8 +1,10 @@
-import map from "unist-util-map";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { slateToDocBook } from "@/utils/translate/slateToDocBook";
 import { findElement } from "@/utils/unist/findElement";
 import { generateId } from "@/utils/uuid";
 import { DocumentState, DocumentAction } from "./types";
+import { EditableDocBookXast } from "@/types/docbook";
+import deepcopy from "deepcopy";
 
 const current = generateId();
 
@@ -13,9 +15,27 @@ const initialState: DocumentState = {
     children: [
       {
         type: "element",
-        name: "para",
+        name: "section",
         data: { id: current },
-        children: [{ type: "text", value: "" }],
+        children: [
+          {
+            type: "element",
+            name: "title",
+            data: { id: generateId() },
+            children: [
+              {
+                type: "text",
+                value: "",
+              },
+            ],
+          },
+          {
+            type: "element",
+            name: "para",
+            data: { id: generateId() },
+            children: [{ type: "text", value: "a" }],
+          },
+        ],
       },
     ],
   },
@@ -23,11 +43,13 @@ const initialState: DocumentState = {
     [current]: [
       {
         type: "para",
-        children: [{ text: "" }],
+        children: [{ text: "a" }],
       },
     ],
   },
 };
+
+type Node = EditableDocBookXast["Node"];
 
 export const documentReducer = (
   state = initialState,
@@ -45,25 +67,22 @@ export const documentReducer = (
     case "UPDATE_SLATE_NODE": {
       const { document, slate } = state;
       const [id, slateNode] = action.payload;
-      const element = findElement(document, {
-        data: { key: id },
-      });
+      const element = findElement(document, { data: { id } });
 
       if (element === undefined) {
         throw new Error("The specified does not exist.");
       }
 
-      const nextDocument = map(document, (node) => {
-        if (node.type !== "element" || node.data?.key !== id) {
-          return node;
-        }
+      const nextDoc = deepcopy(document);
+      const found = findElement(nextDoc, { data: { id } });
 
-        return { ...node, children: slateToDocBook(slateNode) };
-      }) as DocumentState["document"];
+      if (found && found.type === "element") {
+        found.children = slateToDocBook(slateNode) as any;
+      }
 
       return {
         ...state,
-        document: nextDocument,
+        document: nextDoc,
         slate: {
           ...slate,
           [id]: slateNode,

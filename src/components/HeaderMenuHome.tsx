@@ -11,7 +11,6 @@ import FormatAlignRightIcon from "@material-ui/icons/FormatAlignRight";
 import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
 import { HeaderMenu, HeaderMenuProps } from "@/components/HeaderMenu";
 import { HeaderMenuGroup } from "@/components/HeaderMenuGroup";
-import { useEditorActions } from "@/contexts/ContentEditableContext";
 
 interface Font {
   name: string;
@@ -25,7 +24,6 @@ const font_sizes = [8, 10, 12, 14, 18, 24, 28, 32, 48, 64, 128];
 
 export const HeaderMenuHome: FC<HeaderMenuProps> = (props) => {
   const { ...others } = props;
-  const { toggleTextAlign } = useEditorActions();
 
   return (
     <HeaderMenu {...others}>
@@ -52,11 +50,7 @@ export const HeaderMenuHome: FC<HeaderMenuProps> = (props) => {
         />
       </HeaderMenuGroup>
       <HeaderMenuGroup>
-        <ToggleButtonGroup
-          size="small"
-          exclusive
-          onChange={() => toggleTextAlign("center")}
-        >
+        <ToggleButtonGroup size="small" exclusive>
           <ToggleButton value="left">
             <FormatAlignLeftIcon />
           </ToggleButton>

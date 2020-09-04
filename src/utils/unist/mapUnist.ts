@@ -1,6 +1,5 @@
 import { Node } from "unist";
 import map from "unist-util-map";
-import { DocBookXast } from "@/types/docbook";
 
 type AllNode<Tree extends Node> = {
   0: Tree;
