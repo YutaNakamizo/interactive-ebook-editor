@@ -1,8 +1,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { slateReducer } from "@/features/slate/slice";
+import { documentReducer } from "@/features/document/reducers";
 
 export const rootReducer = combineReducers({
-  slate: slateReducer,
+  document: documentReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

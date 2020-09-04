@@ -6,7 +6,7 @@ import { Tabs, Toolbar, Paper } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import { setSlateNodes } from "@/features/slate/slice";
 import { RootState } from "@/app/rootReducer";
-import { Editor } from "@/contexts/EditorContext";
+import { Editor } from "@/contexts/ContentEditableContext";
 
 class PaperPreset {
   public width: number;

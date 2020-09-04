@@ -30,11 +30,15 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",
     "@types/unist": "^2.0.3",
+    "@types/uuid": "^8.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.1",
     "slate": "^0.58.4",
-    "slate-react": "^0.58.4"
+    "slate-react": "^0.58.4",
+    "unist-util-find": "^1.0.1",
+    "unist-util-map": "^2.0.1",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.8.0",

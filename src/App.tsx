@@ -4,7 +4,7 @@ import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 import * as colors from "@material-ui/core/colors";
 import { store } from "./app/store";
-import { Provider as EditorProvider } from "@/contexts/EditorContext";
+import { Provider as EditorProvider } from "@/contexts/ContentEditableContext";
 import { Header } from "@/components/Header";
 import { Main } from "@/components/Main";
 import { Footer } from "@/components/Footer";

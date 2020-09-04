@@ -11,7 +11,7 @@ import FormatAlignRightIcon from "@material-ui/icons/FormatAlignRight";
 import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
 import { HeaderMenu, HeaderMenuProps } from "@/components/HeaderMenu";
 import { HeaderMenuGroup } from "@/components/HeaderMenuGroup";
-import { useEditorActions } from "@/contexts/EditorContext";
+import { useEditorActions } from "@/contexts/ContentEditableContext";
 
 interface Font {
   name: string;

@@ -1,10 +1,12 @@
-import { Editor, Transforms, Text, Element, Point } from "slate";
+import { Editor, Transforms } from "slate";
 import { ReactEditor } from "slate-react";
 
-export class CreateActions {
-  editor: Editor & ReactEditor;
+export class SectionActions {
+  parent: "section";
+  private editor: Editor & ReactEditor;
 
   constructor(editor: Editor & ReactEditor) {
+    this.parent = "section";
     this.editor = editor;
   }
 

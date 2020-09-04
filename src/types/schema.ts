@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
+import * as Unist from "unist";
 import * as Xast from "./xast";
-import * as Unist from "./unist";
 import { Exclusive } from "./utils";
 import { Append, Reverse, Concat } from "./array";
 
-export type SchemaEntry = Omit<Xast.Element, "children" | "attributes"> & {
+export type SchemaEntry = Pick<Xast.Element, "type" | "name" | "attributes"> & {
   attributes?: {
     [key: string]: unknown;
   };
@@ -30,7 +30,7 @@ export type Schema<T extends SchemaEntry> = {
   };
 
   Node:
-    | Schema<T>["Element"]
+    | Element<T>
     | Xast.Text
     | Xast.Comment
     | Xast.Doctype

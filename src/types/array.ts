@@ -4,13 +4,6 @@ export type Append<T, U extends unknown[]> = ((x: T, ...y: U) => void) extends (
   ? V
   : never;
 
-export type Unshift<T, U extends unknown[]> = ((
-  x: T,
-  ...y: U
-) => void) extends (...x: infer U) => void
-  ? U
-  : never;
-
 export type Shift<T extends unknown[]> = ((...x: T) => void) extends (
   x: T[0],
   ...y: infer U
@@ -29,7 +22,7 @@ type _Reverse<
   0: To;
   1: _Reverse<
     From,
-    Unshift<From[Index["length"]], To>,
+    Append<From[Index["length"]], To>,
     Append<unknown, Index>,
     Limit
   >;

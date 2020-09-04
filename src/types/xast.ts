@@ -1,9 +1,4 @@
-import * as Unist from "./unist";
-
-/*\
- * This definition is based on https://github.com/syntax-tree/xast.
- * The last reference is 2020.8.28.
-\*/
+import * as Unist from "unist";
 
 interface Attributes {
   [x: string]: unknown;
