@@ -10,7 +10,7 @@ type State = {
   [key in string]?: [Editor & ReactEditor, ExposedStore];
 };
 
-export const useSlatify = ({
+export const useSlate = ({
   document,
   currentId,
   slate,

@@ -7,7 +7,7 @@ import { SlateElements } from "@/components/slate";
 import { updateSlateNode } from "@/features/document/actions";
 import { UUID } from "@/types/uuid";
 import { ExposedStore, InternalStore } from "./types";
-import { useSlatify } from "./useSlatify";
+import { useSlate } from "./useSlate";
 
 const ExposedContext = createContext<ExposedStore>({ parent: null });
 const InternalContext = createContext<InternalStore>({});
@@ -39,7 +39,7 @@ export const ContentEditable: FC<{ id: UUID }> = ({ id }) => {
 
 export const Provider: FC<unknown> = ({ children }) => {
   const state = useSelector((state: RootState) => state.document);
-  const [internal, exposed] = useSlatify(state);
+  const [internal, exposed] = useSlate(state);
 
   return (
     <InternalContext.Provider value={internal}>
